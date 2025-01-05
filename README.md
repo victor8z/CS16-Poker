@@ -33,3 +33,54 @@ The **Advanced Poker Hand Evaluator** is a C++ program designed to identify and 
    ```bash
    ./poker
 
+## Usage:
+The program evaluates poker hands based on a given input set of cards:
+1. Create a Hand object and add cards using the add() method.
+2. Call the best_hand() function to determine the highest-ranked hand.
+3. Use the print() method to display the results.
+
+## Example Code:
+#include "Hand.h"
+#include "best_hand.cpp"
+
+int main() {
+    Hand myHand;
+    myHand.add(Card(Rank::ACE, Suit::SPADES));
+    myHand.add(Card(Rank::KING, Suit::HEARTS));
+    myHand.add(Card(Rank::QUEEN, Suit::DIAMONDS));
+    myHand.add(Card(Rank::JACK, Suit::CLUBS));
+    myHand.add(Card(Rank::TEN, Suit::SPADES));
+
+    Hand* best = best_hand(myHand);
+    best->print(); // Outputs the best poker hand
+    delete best;
+
+    return 0;
+}
+
+## Project Structure:
+AdvancedPokerHandEvaluator/
+- Card.h           # Defines the Card class and enums for rank and suit
+- Hand.h           # Defines the Hand class for managing a set of cards
+- Hand.cpp         # Implementation of the Hand class
+- best_hand.cpp    # Functions to evaluate the best poker hand
+  
+## Key Functions:
+- **add():** Adds a card to the hand in a sorted position.
+- **best_hand():** Determines the highest poker hand from a given hand.
+- **sort():** Sorts cards by rank and suit using custom comparison logic.
+- **findStraightFlush():** Identifies a straight flush, the highest-ranking hand.
+- **get():** Retrieves a specific card by index, with bounds checking.
+
+## Examples:
+- **Adding Cards to a Hand**
+Hand myHand;
+myHand.add(Card(Rank::QUEEN, Suit::DIAMONDS));
+myHand.add(Card(Rank::TEN, Suit::SPADES));
+myHand.print();
+
+-**Evaluating the Best Hand:**
+Hand* best = best_hand(myHand);
+best->print(); // Prints the best possible hand
+delete best;
+
